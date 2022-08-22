@@ -1,0 +1,15 @@
+{
+  "name": "@valeriobelli/changesets-playground",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": true,
+  "repository": "git@github.com:valeriobelli/changesets-playground.git",
+  "author": "Valerio Belli <belli.valerio@outlook.com>",
+  "workspaces": [
+    "packages/*"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@changesets/cli": "^2.24.3"
+  }
+}
