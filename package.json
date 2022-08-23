@@ -10,7 +10,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "publish": "changeset version",
+    "release": "changeset publish",
     "version": "changeset version"
   },
   "dependencies": {
