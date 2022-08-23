@@ -9,6 +9,10 @@
     "packages/*"
   ],
   "license": "MIT",
+  "scripts": {
+    "publish": "changesets version",
+    "version": "changesets version"
+  },
   "dependencies": {
     "@changesets/cli": "^2.24.3"
   }
