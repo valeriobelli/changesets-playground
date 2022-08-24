@@ -35,15 +35,15 @@ jobs:
       - name: "Package info"
         id: package_info
         run: |
-          echo "::set-output name=name::$(cat packages/${{ inputs.package_name }}/package.json | jq '.name')"
-          echo "::set-output name=version::$(cat packages/${{ inputs.package_name }}/package.json | jq '.version')"
+          echo "::set-output name=name::$(cat packages/${{ inputs.package_name }}/package.json | jq '.name' | tr -d '"')"
+          echo "::set-output name=version::$(cat packages/${{ inputs.package_name }}/package.json | jq '.version' | tr -d '"')"
 
       - name: "Check version"
         id: check_version
         run: |
-          REMOTE_VERSION=$(yarn npm info ${{ steps.package_info.outputs.name }} --json | jq '.version')
+          REMOTE_VERSION=$(yarn npm info ${{ steps.package_info.outputs.name }} --json | jq '.version' | tr -d '"')
 
-          if [ "\"${{ steps.package_info.outputs.version }}\"" = $REMOTE_VERSION ]; then
+          if [ ${{ steps.package_info.outputs.version }} = $REMOTE_VERSION ]; then
             echo "The local package ${{ steps.package_info.outputs.name }}@${{ steps.package_info.outputs.version }} is already on the registry!";
 
             exit -1;
@@ -66,10 +66,10 @@ jobs:
 
       - name: "Read changelog"
         id: read_changelog
-        run: echo "::set-output name=changelog_entry::$(yarn changesets-changelog-action ./packages/${{ inputs.package_name }}/CHANGELOG.md ${{ steps.package_info.outputs.version }})"
+        run: echo "::set-output name=changelog_entry::$(yarn changesets-changelog-entry ./packages/${{ inputs.package_name }}/CHANGELOG.md ${{ steps.package_info.outputs.version }})"
 
       - name: "Create Release"
         uses: ncipollo/release-action@v1
         with:
           body: ${{ steps.read_changelog.outputs.changelog_entry }}
-          tag: "${{ steps.package_info.outputs.name }}@${{ steps.package_info.outputs.version }}"
+          tag: ${{ steps.package_info.outputs.name }}@${{ steps.package_info.outputs.version }}
