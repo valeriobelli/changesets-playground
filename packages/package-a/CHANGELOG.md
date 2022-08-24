@@ -1,5 +1,11 @@
 # @valeriobelli/package-a
 
+## 2.1.0
+
+### Minor Changes
+
+- ac90aed: This is a minor changelog to test the release workflow
+
 ## 2.0.0
 
 ### Major Changes
