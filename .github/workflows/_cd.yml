@@ -66,7 +66,13 @@ jobs:
 
       - name: "Read changelog"
         id: read_changelog
-        run: echo "::set-output name=changelog_entry::$(yarn changesets-changelog-entry ./packages/${{ inputs.package_name }}/CHANGELOG.md ${{ steps.package_info.outputs.version }})"
+        run: |
+          CHANGELOG_ENTRY=$(yarn changesets-changelog-entry ./packages/${{ inputs.package_name }}/CHANGELOG.md ${{ steps.package_info.outputs.version }})
+          CHANGELOG_ENTRY="${CHANGELOG_ENTRY//'%'/'%25'}"
+          CHANGELOG_ENTRY="${CHANGELOG_ENTRY//$'\n'/'%0A'}"
+          CHANGELOG_ENTRY="${CHANGELOG_ENTRY//$'\r'/'%0D'}"
+
+          echo "::set-output name=changelog_entry::$CHANGELOG_ENTRY"
 
       - name: "Create Release"
         uses: ncipollo/release-action@v1
