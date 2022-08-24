@@ -1,5 +1,11 @@
 # @valeriobelli/package-a
 
+## 2.2.0
+
+### Minor Changes
+
+- a9af746: Oh gosh, another test dammit
+
 ## 2.1.0
 
 ### Minor Changes
