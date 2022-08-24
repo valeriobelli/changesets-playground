@@ -1,5 +1,11 @@
 # @valeriobelli/package-a
 
+## 2.3.0
+
+### Minor Changes
+
+- a58864f: Another dammit changelog to test fixes on CD workflow
+
 ## 2.2.0
 
 ### Minor Changes

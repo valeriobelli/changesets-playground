@@ -1,6 +1,6 @@
 {
     "name": "@valeriobelli/package-a",
-    "version": "2.2.0",
+    "version": "2.3.0",
     "scripts": {
         "build": "echo \"Package A has been built!\""
     }
