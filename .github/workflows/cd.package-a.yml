@@ -1,0 +1,17 @@
+name: "package-a/CD"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "packages/package-a/**"
+
+jobs:
+  release:
+    name: "package-a"
+    uses: "./.github/workflows/_cd.yml"
+    with:
+      package_name: "package-a"
+    secrets:
+      npm_token: ${{ secrets.NPM_TOKEN }}
