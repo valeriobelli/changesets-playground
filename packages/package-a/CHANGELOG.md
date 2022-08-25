@@ -1,5 +1,11 @@
 # @valeriobelli/package-a
 
+## 2.4.0
+
+### Minor Changes
+
+- 899814b: This is a test with concurrent instances of changesets on different workspaces
+
 ## 2.3.0
 
 ### Minor Changes
