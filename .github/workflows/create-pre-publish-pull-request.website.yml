@@ -1,11 +1,11 @@
-name: Release packages
+name: Release website
 
 on:
   push:
     branches:
       - main
-    paths-ignore:
-      - "applications/**"
+    paths:
+      - "applications/website/**"
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -24,13 +24,14 @@ jobs:
           cache: yarn
 
       - name: Install Dependencies
-        run: yarn
+        run: yarn --cwd ./applications/website
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
         with:
-          title: Version packages
+          cwd: ./applications/website
+          title: Version Website
           version: yarn run version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

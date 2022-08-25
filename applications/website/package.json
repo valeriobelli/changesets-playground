@@ -1,0 +1,12 @@
+{
+    "name": "@valeriobelli/website",
+    "version": "0.0.0",
+    "workspaces": ["."],
+    "scripts": {
+        "version": "changeset version"
+    },
+    "devDependencies": {
+        "@changesets/cli": "^2.24.3",
+        "changesets-changelog-entry": "^1.0.2"
+    }
+}
